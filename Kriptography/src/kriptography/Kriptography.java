@@ -48,7 +48,7 @@ public class Kriptography {
     }
 
     public static void main(String[] args) {
-        String start = "03E81B0D";
+        String start =/*"668F1500"; //my key*/ "03E81B0D";
         int steps = 14;
         String[] Keys = new String[steps];
         Keys[0] = hexToBin(start);
@@ -63,12 +63,14 @@ public class Kriptography {
         for (int i = 0; i < steps; i++) {
             System.out.println(Keys[i]);
         }
-        String text1 = "00A4F2A6";
+        String text1 =/*"C81523E6";*/     /*my text1*/ "00A4F2A7";
         long xor;
         int num;
         String upper="0123456789ABCDEF";
-        int[] p = {28, 32, 8, 5, 16, 3, 4, 13, 21, 2, 23, 9, 29, 14, 10, 7, 15, 24, 27, 1, 31, 20 ,19 ,12 ,25 ,30 ,22 ,11, 6, 18, 17, 26};
-        String[] S={"620f1bac59e47d83","c8eb5361d9f7204a","e15d4cf7a892b063","ba6e38d7f14c0529","1829fea06347d5cb","ef5db2684c97103a","d2ae389bf410756c","47f2de698b3a1c05"};
+        /*мой p блок */int[] p = {28, 32, 8, 5, 16, 3, 4, 13, 21, 2, 23, 9, 29, 14, 10, 7, 15, 24, 27, 1, 31, 20 ,19 ,12 ,25 ,30 ,22 ,11, 6, 18, 17, 26};
+//int[] p = {30, 3, 26, 27, 31, 16, 1, 32, 19, 11, 21, 4, 20, 12, 15, 14, 18, 10, 13, 25, 23, 8, 28, 9, 2, 17, 6, 29, 5, 7, 24, 22};        
+/*мои S блоки */String[] S={"620f1bac59e47d83","c8eb5361d9f7204a","e15d4cf7a892b063","ba6e38d7f14c0529","1829fea06347d5cb","ef5db2684c97103a","d2ae389bf410756c","47f2de698b3a1c05"};
+        //String[] S={"927e10b38acfd465","371e2baf80d46c95","0834d7fb2a1c956e","035d7a24e98cb61f","6cf48e32d5710ab9","421ef7d9568ca30b","d2190e8563fac7b4","47a382695f1cebd0"};
         System.out.println(upper.length());
         text1=hexToBin(text1);
         System.out.println("Входной текст: " + text1);
@@ -89,7 +91,7 @@ public class Kriptography {
            System.out.println(newS); //S блок в бинарном виде
            text1="";
            for(int k=0; k<32;k++){ //P подстановка
-           text1+=newS.substring(32-p[k],32-p[k]+1);
+           text1+=newS.substring(/*33-*/p[k]-1,/*33-*/p[k]);
            System.out.println(text1);
            }
        }
@@ -108,13 +110,13 @@ public class Kriptography {
            //System.out.println(P1[k]);
            }
             for(int k=0; k<32;k++){ 
-           P2[32-p[k]]=P1[31-k] ;
+           P2[/*32-*/p[k]-1]=P1[/*31-*/k] ;
            } //теперь в Р2 лежит мой текст по битам 32,31...1
             text1="";
             for(int j=0;j<32;j++){
             text1+= "" + P2[j];
             }
-            System.out.println("После Р подстановки: " + text1);
+           // System.out.println("После Р подстановки: " + text1);
             String afterSP="";
             for(int j=0;j<8;j++){ //SP подстановка
            String block = text1.substring(j*4,j*4+4); //выделяю блок
@@ -132,16 +134,17 @@ public class Kriptography {
            //System.out.println("позиция " + position + " hex= " + Integer.toHexString(position) );
            
       }
-            System.out.println(afterSP); //число в hex формате после SP подстановки
+            //System.out.println(afterSP); //число в hex формате после SP подстановки
             
-      long xor1;
+      long xor1,xor2;
       afterSP=hexToBin(afterSP);
-      System.out.println("Входной текст: " + afterSP);
-      xor1=Long.parseLong(afterSP,2)^Long.parseLong(Keys[i],2);
-      System.out.println(xor1);
+     // System.out.println("Входной текст: " + afterSP);
+      xor1=Long.parseLong(afterSP,2)^Long.parseLong(Keys[steps-i-1],2);
+      xor2=xor1^Long.parseLong(Keys[steps-i-1],2);
+      //System.out.println(xor2);
       text1="";
-      text1+=decToBin(Long.toString(xor1));
-      System.out.println("Binary: " + text1);
+      text1+=decToBin(Long.toString(xor2));
+      //System.out.println("Binary: " + text1);
       
       
       }
