@@ -22,7 +22,6 @@ public class Cleanic {
          System.out.print("Если желаете произвести поиск пациентов, нажмите 1: ");
          if(in.nextInt()==1)             
          findPatient(arrPatient,num);
-
      }
      
      public static void createPatient(Patient patient){

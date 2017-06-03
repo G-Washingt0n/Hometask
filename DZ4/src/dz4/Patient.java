@@ -2,6 +2,7 @@ package dz4;
 
 
 public class Patient {
+
     public String name;
      public String surname;
      public int age;
