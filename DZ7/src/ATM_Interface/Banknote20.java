@@ -1,7 +1,7 @@
 package ATM_Interface;
 
 
-public class Banknote20 extends Money {
+public class Banknote20 {
     private final int value = 20;
     private int amount = 5; //изначально в банкомате будет только 5 банкнот номиналом 20
 
