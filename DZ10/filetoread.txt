@@ -1,0 +1,2 @@
+George Martsul | 20 | true
+Zenkevich Yana | 19 | false
