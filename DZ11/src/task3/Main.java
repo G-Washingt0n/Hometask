@@ -21,8 +21,8 @@ public class Main {
         woman.add(new People("Третья ", "Даздраперма ", "Иосифовна"));
         
         HashMap<String, ArrayList<People>> hash = new HashMap<>();
-        hash.put("man", new ArrayList<People>(man) );
-        hash.put("woman",new ArrayList<People>(woman));
+        hash.put("man", man );
+        hash.put("woman",woman);
         System.out.println("Мужское фио (1), или женское(2)? ");
         Scanner scaner = new Scanner(System.in);
         int num = scaner.nextInt();
