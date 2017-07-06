@@ -29,7 +29,8 @@ public class ParserThread extends Thread {
         }
 
         try {
-
+            
+            new ParseJson().main();
             //парсим JSON 
             // ВЫЗВАТЬ ФУНКЦИЮ ++++++++++++++++++++++++++++++++++++
             

@@ -30,16 +30,10 @@ public class DownloadThread extends Thread{
     
     @Override
     public void run(){
+
         //качаем JSON
-        try {
-            
-              //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
-            //ВЫЗВАТЬ ФУНКЦИЮ ДЛЯ СКАЧКИ ФАЙЛА  ++++++++++++++++++++++++++++++++++++++++++++++++==
-            
-            
             System.out.println("качаем JSON");
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) { }
+            downloadJson();
         
         
         //пробуждаем поток парсера , затем засыпаем
@@ -63,7 +57,7 @@ public class DownloadThread extends Thread{
         
         System.out.println("DownloadThread - пробуждаем поток парсера");
             System.out.println("Торрент заканчивает работу");
-        }
+        } 
     }
     
     public void downloadXml(){
@@ -103,4 +97,43 @@ public class DownloadThread extends Thread{
               }
           }
     }
+    
+     public void downloadJson(){
+        InputStream inputStream = null;
+            FileOutputStream outputStream = null;
+            
+          try{
+              URL url = new URL(LINKJSON);
+                    HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                        // получаем код ответа (от сайта или сервера)
+            int responseCode = httpURLConnection.getResponseCode();
+            if(responseCode == httpURLConnection.HTTP_OK){
+            inputStream = httpURLConnection.getInputStream();
+            File file = new File("jsonfile.json");
+            outputStream = new FileOutputStream(file);
+            int bytesRead = -1; //количество прочитанных байёт за одно чтение 
+            byte[] buffer = new byte[1024]; // то что скачали 
+            while((bytesRead = inputStream.read(buffer))!=-1){
+                //записываем в файл от 0 до "bytesRead" из "buffer";
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            }
+            else
+                  System.out.println("responseCode " + responseCode);
+                   } catch (Exception ex) {
+            System.out.println("Ошибка" + ex.toString());
+        } finally {
+              try{
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (outputStream != null) {
+                outputStream.close();
+            }
+              } catch (Exception e){
+                  System.out.println("Ошибка при закрытии стрима" + e.toString());
+              }
+          }
+    }
+    
 }

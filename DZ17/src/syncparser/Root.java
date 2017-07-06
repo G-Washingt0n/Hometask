@@ -1,11 +1,14 @@
 package syncparser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Root {
     private String name;
     private String location;
-    private String date;    
+    private Date date;    
     private ArrayList<Stock> stock;
 
     public String getName() {
@@ -32,12 +35,14 @@ public class Root {
         this.location = location;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String date) throws ParseException {
+        SimpleDateFormat sf = new SimpleDateFormat();
+        sf.applyPattern("");
+        this.date = sf.parse(date);
     }
     
 }
