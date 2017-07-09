@@ -13,8 +13,7 @@ public class ParseJson {
     public void main() {
         Root root = parseJson("jsonfile.json");
         System.out.println(root.toString());
-        /*Root root = parseGson("jsonfile.json");
-        System.out.println(root.toString());*/
+       
     }
     
     public static Root parseJson(String path){
@@ -30,11 +29,12 @@ public class ParseJson {
             
             String locat = (String) rootObj.get("location"); 
             System.out.println("location = " + locat);
-            root.setName(locat);
+            root.setLocation(locat);
             
-            String data = (String) rootObj.get("data"); 
-            System.out.println("data = " + data);
-            root.setName(data);
+            String dat = (String) rootObj.get("date"); 
+            //System.out.println("data = " + dat);
+            root.setDate(dat);
+            System.out.println("data = " + root.getDate());
             
             int i=0;            
             ArrayList<Stock> stockList = new ArrayList<>();
@@ -48,29 +48,42 @@ public class ParseJson {
                 long id = (long)item.get("id");
                 String nameStock = (String)item.get("name");
                 double bid = (double) item.get("bid");
+                try{
                 double minn = (double) item.get("minPrice");
+                stock.setMinPrice((double)minn);
+                }catch(Exception e){
+                    long minn = (long) item.get("minPrice");
+                    stock.setMinPrice((double)minn);
+                }
+                try{
                 double maxx = (double) item.get("maxPrice");
-                
+                stock.setMaxPrice((double)maxx);
+                } catch(Exception e){
+                    long maxx = (long) item.get("maxPrice");
+                    stock.setMaxPrice((double)maxx);
+                }
                 boolean vis = (boolean)item.get("visible");
                
                 stock.setId((int)id);
                 stock.setName(nameStock);
                 stock.setBid(bid);
                 stock.setVisible(vis);
-                stock.setMinPrice(minn);
-                stock.setMaxPrice(maxx);
+               // stock.setMinPrice((double)minn);
+                //stock.setMaxPrice((double)maxx);
                 
                 
                 stockList.add(stock);
-                System.out.println(stock.toString());
+               //System.out.println(stockArray.get(i).toString());
             }catch(Exception e){
                     System.out.println("Завершился парсинг по Exceeption");
                     break;
                     }
-            i++;
+                i++;
             }
+            //System.out.println(stockList.toString());
             
-            root.setStock(stockList);
+            //root.setStock(stockList);
+           // root.getStock();
         } catch (Exception e) {
             System.out.println("Ошибка чтения Json файла" + e.toString());
         }

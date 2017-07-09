@@ -115,7 +115,7 @@ public class ParsXml {
         i++;
         }
         
-       /*for(Stock e: list) {
+      /* for(Stock e: list) {
          
         System.out.println(e.toString());
          

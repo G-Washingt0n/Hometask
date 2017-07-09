@@ -30,14 +30,12 @@ public class ParserThread extends Thread {
         }
 
         try {
+            System.out.println("Парсер - парсим JSON");
             
             new ParseJson().main();
             //парсим JSON 
-            // ВЫЗВАТЬ ФУНКЦИЮ ++++++++++++++++++++++++++++++++++++
+            // ВЫЗВАТЬ ФУНКЦИЮ
             
-            
-            System.out.println("Парсер - парсим JSON");
-
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
         }

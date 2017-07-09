@@ -18,12 +18,19 @@ public class Root {
     public void setName(String name) {
         this.name = name;
     }
+    
 
-    public ArrayList<Stock> getStock() {
-        return stock;
+    public String getStock() {
+        Stock s = new Stock();
+        System.out.println(s.getId() + " " + s.getName() + " " + s.getBid() + " " 
+                + s.getMinPrice() + " " + s.getMaxPrice() + " " + s.isVisible());
+        String str = s.getId() + " " + s.getName() + " " + s.getBid() + " " 
+                + s.getMinPrice() + " " + s.getMaxPrice() + " " + s.isVisible();
+        return str;
     }
 
     public void setStock(ArrayList<Stock> stock) {
+        //this.stock.add(stock);
         this.stock = stock;
     }
 
@@ -41,7 +48,7 @@ public class Root {
 
     public void setDate(String date) throws ParseException {
         SimpleDateFormat sf = new SimpleDateFormat();
-        sf.applyPattern("");
+        sf.applyPattern("y-M-d H:m:s X");
         this.date = sf.parse(date);
     }
     
