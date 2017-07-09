@@ -1,5 +1,6 @@
 package syncparser;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,7 +11,7 @@ import org.w3c.dom.NodeList;
 
 public class ParsXml {
 
-    public void parseXml () {
+    public void parseXml () throws ParseException {
         //DOM
         Document dom = null;
         Root rt = new Root();

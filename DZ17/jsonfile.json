@@ -1,7 +1,7 @@
 {
   "name": "Moscow Stock",
-  "location": "Minks",
-  "date": "2015-10-09 12:35:00 +0300",
+  "location": "Minsk",
+  "date": "2015-10-09 12:35:00 +03:00",
   "stock": [
       {
         "id": 0,

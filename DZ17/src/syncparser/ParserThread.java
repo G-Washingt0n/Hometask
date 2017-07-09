@@ -1,5 +1,6 @@
 package syncparser;
 
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,7 +55,12 @@ public class ParserThread extends Thread {
             }
         }
             System.out.println("парсим XML");
+        try {
             new ParsXml().parseXml();
+        } catch (ParseException ex) {
+            System.out.println("Неудалось распарсить XML");
+
+        }
             
         System.out.println("Парсер завершает работу");
 
