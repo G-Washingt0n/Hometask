@@ -1,4 +1,4 @@
-package myProject;
+package model;
 
 public class Stock {
 

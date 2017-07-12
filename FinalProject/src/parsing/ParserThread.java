@@ -1,6 +1,10 @@
-package myProject;
+package parsing;
 
+import parsing.ParseJson;
+import parsing.ParsXml;
+import model.Root;
 import java.text.ParseException;
+import view.Main;
 
 public class ParserThread extends Thread {
 

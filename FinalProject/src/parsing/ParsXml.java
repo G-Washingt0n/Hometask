@@ -1,5 +1,7 @@
-package myProject;
+package parsing;
 
+import model.Stock;
+import model.Root;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;

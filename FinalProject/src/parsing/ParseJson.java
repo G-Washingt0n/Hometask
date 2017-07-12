@@ -1,5 +1,7 @@
-package myProject;
+package parsing;
 
+import model.Stock;
+import model.Root;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileReader;

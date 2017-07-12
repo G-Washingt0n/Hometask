@@ -1,10 +1,11 @@
-package myProject;
+package model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Root {
     private String name;
@@ -81,6 +82,45 @@ public class Root {
         return list;
     }
     
+    public TreeMap<Double, Stock> startSort(int method){
+        TreeMap<Double, Stock> list = new TreeMap<>();
+        ArrayList<Double> crit = new ArrayList<>();
+       switch(method){
+           case 1:
+               for(Stock st: stock){
+            crit.add(st.getBid());
+                }
+                list = sort(crit);
+                return list;
+            case 2:
+                for (Stock st : stock) {
+                    crit.add(st.getMinPrice());
+                }
+                list = sort(crit);
+                return list;
+            case 3:
+                for (Stock st : stock) {
+                    crit.add(st.getMaxPrice());
+                }
+                list = sort(crit);
+                return list;
+
+        }
+        
+        
+        return null;
+    }
+    
+    public TreeMap<Double, Stock> sort(ArrayList<Double> crit){
+        TreeMap<Double, Stock> list = new TreeMap<>();
+        int i=0;
+        for(Stock st: stock) {
+            list.put(crit.get(i), st);
+            i+=1;
+        }        
+        return list;
+    }
+    
     //метод для поиска по id
     public Stock find(int id){
         for(Stock st: stock){
@@ -90,7 +130,8 @@ public class Root {
         return null;
     }
     
-    //внутренний класс со списком зарплат
+    
+    //внутренний класс для подсчета средней цены акции
     class AverPriceList implements MyListener{
         private HashMap<Integer, Double> averPrice;
 
@@ -103,7 +144,7 @@ public class Root {
         }
 
         @Override
-        public double getAverPrice(myProject.Stock stock) {
+        public double getAverPrice(model.Stock stock) {
             return (stock.getMaxPrice()+stock.getMinPrice())/2;
         }
         

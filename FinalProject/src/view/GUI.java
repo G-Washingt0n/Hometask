@@ -1,4 +1,4 @@
-package myProject;
+package view;
 
 import java.util.Scanner;
 

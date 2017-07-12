@@ -1,4 +1,6 @@
-package myProject;
+package model;
+
+import model.Stock;
 
 
 public interface MyListener {

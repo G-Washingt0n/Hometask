@@ -1,10 +1,11 @@
-package myProject;
+package parsing;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import view.Main;
 
 public class DownloadThread extends Thread{
     
